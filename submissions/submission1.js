@@ -26,8 +26,31 @@ function readLine() {
 
 // Complete the minimumLoss function below.
 function minimumLoss(price) {
+    
+    const size = price.length;
+    var priceSorted = [];
+    var result = 0;
+    var minimum = 0;
 
+    for(var i = 0; i < size; i++)
+    {
+        priceSorted.push({'id':i, 'value':price[i]});
+    }
+    priceSorted.sort(function(a, b){return b.value-a.value});
 
+    for(var j = 0; j < priceSorted.length-1; j++)
+    {
+        if(priceSorted[j].id < priceSorted[j+1].id)
+        {
+            result = priceSorted[j].value - priceSorted[j+1].value;
+            if(minimum == 0 || result < minimum)
+            {
+                minimum = result;
+            }
+        }
+    }
+
+    return minimum;
 }
 
 function main() {
